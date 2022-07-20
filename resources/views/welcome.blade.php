@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>RFQ</title>
 
     <!-- Fonts -->
 
@@ -23,9 +23,21 @@
 </head>
 
 <body class="antialiased">
+    <div class='container'>
+        <nav class="navbar navbar-light bg-transparent">
+            <span class="navbar-brand mb-0 h1"><img
+                    src="https://m-jenzi.com/wp-content/uploads/2022/05/logo-top-final-1.png" height='60'></span>
+
+            <a href="https://m-jenzi.com/" class="btn btn-outline-primary">Back Home</a>
+        </nav>
+
+    </div>
     <br>
     <br>
     <div class="container card">
+        <h1 class='text-center'>
+            Let Us Know What You Want.
+        </h1>
         <form class="m-3" name="form" id='form'>
             <div class="row">
                 <div class="col-ls-6 col-sm-6">
@@ -45,7 +57,8 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Location</label>
-                <input required type="text" name="location" class="form-control" placeholder="Location..Kenya Nairobi">
+                <input required type="text" name="location" class="form-control"
+                    placeholder="Location..Kenya Nairobi">
             </div>
             <div class="row">
                 <div class="col-lg-4 col-sm-4">
@@ -63,7 +76,7 @@
                 <div class="col-lg-4 col-sm-4">
                     <div class="form-group">
                         <label for="exampleInputPassword1">Image</label>
-                        <input   type="file" name="img" class="form-control" placeholder="image">
+                        <input type="file" name="img" class="form-control" placeholder="image">
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-4">
@@ -86,12 +99,17 @@
                 </div>
                 <hr style="width:100%;text-align:left;margin-left:0">
             </div>
-            <div id="add"></div>
+            <div id="add">
+
+            </div>
             <div class="form-check m-1">
 
-                <button type="button" class="btn btn-dark" onclick="addNew()">+ add</button>
+                <button type="button" class="btn btn-dark" onclick="addNew()">+ Add a new Item</button>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+
+            <div class="form-check m-1">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
         </form>
     </div>
 </body>
@@ -112,7 +130,7 @@
     }
 
     function addNew() {
-        console.log(1222);
+
         let key = makeid(5)
         document.getElementById('add').innerHTML += `  <div class="row">
                 <div class="col-lg-4 col-sm-4">
@@ -175,6 +193,7 @@
             .catch(error => {
                 console.error('Error:', error);
             });
+
 
     });
 </script>

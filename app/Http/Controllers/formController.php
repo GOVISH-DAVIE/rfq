@@ -91,7 +91,7 @@ class formController extends Controller
             // Get just Extension
             $extension = $request->file("$name")->getClientOriginalExtension();
             // Filename To store
-            $fileNameToStore = $filename . "_" . time() . "." . $extension;
+            $fileNameToStore =   time() . "." . $extension;
             $path = $request->file("$name")->storeAs("public/image", $fileNameToStore);
         }
         // Else add a dummy image
@@ -123,6 +123,8 @@ class formController extends Controller
     public function show($id)
     {
         //
+        $item = forms::find($id);
+        return view('view')->with("item", $item);
     }
 
     /**

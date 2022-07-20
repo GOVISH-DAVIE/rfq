@@ -23,6 +23,16 @@
 </head>
 
 <body class="antialiased">
+    <div class='container'>
+        <nav class="navbar navbar-light bg-transparent">
+            <span class="navbar-brand mb-0 h1"><img
+                    src="https://m-jenzi.com/wp-content/uploads/2022/05/logo-top-final-1.png" height='60'></span>
+
+            <a href="https://m-jenzi.com/" class="btn btn-outline-primary">Back Home</a>
+        </nav>
+
+    </div>
+    <br>
   <div class="container">
     <div class="row">
         @foreach ($rfqs as $item)
@@ -36,7 +46,7 @@
                           <p class="card-text"><small class="text-muted">
                             No. Items: <?php print_r(count(json_decode($item->items))); ?></small></p>
 
-                            <a class="btn btn-outline-dark" href="/rfc/{{$item->id}}">view </a>
+                            <a class="btn btn-outline-dark" href="/rfq/{{$item->id}}">view </a>
                         </div>
                       </div>
               
