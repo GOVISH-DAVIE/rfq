@@ -48,7 +48,7 @@
                     </div>
                     <div class="card my-2">
                         <div class="card-body">
-                            <input type="text" name="item" id="" value="{{ $item->id }}" hidden>
+                            <input type="text" name="item" id="item" value="{{ $item->id }}" hidden>
                             <input required name="name" type="text" class="form-control my-1"
                                 placeholder="Vendor Name" aria-label="Vendor Name" aria-describedby="basic-addon2">
                             <input required name="email" type="email" class="form-control my-1"
@@ -79,7 +79,7 @@
                                 <div class="input-group mb-3">
                                     <input required type="number" class="form-control" placeholder="Add Own Quote"
                                         aria-label="Recipient's username"
-                                        name="{{ $key }}#{{$it->item}}#{{$it->quantity}}"
+                                        name="{{ $key }}#{{ $it->item }}#{{ $it->quantity }}"
                                         aria-describedby="basic-addon2">
                                     <div class="input-group-append">
                                         {{-- <button class="btn btn-outline-secondary" type="button">Button</button> --}}
@@ -106,21 +106,21 @@
 
     form.addEventListener("submit", (event) => {
         event.preventDefault();
-        let fd = new FormData(document.forms.form)
+        let fd = new FormData(document.getElementById('form'))
 
+        fd.append('item', document.getElementById('item').value)
         fetch("/quote", {
                 method: "POST",
-                body: new FormData(document.getElementById('form'))
+                body: fd
             })
-            .then(response => response.json())
+            .then(response => response.text())
             .then(response => {
                 console.log(response);
-                response.forEach(element => {
-                    console.log(JSON.parse(element));
-                });
+
+
             })
             .catch(err => {
-                console.log("Error:", err);
+                console.log("Error:", err.message);
             })
 
 

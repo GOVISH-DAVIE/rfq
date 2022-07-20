@@ -46,6 +46,7 @@ class QuotationController extends Controller
     public function store(Request $request)
     {
         //
+        // return $request->item;
 
 
         $arr = [];
@@ -57,6 +58,7 @@ class QuotationController extends Controller
                 ));
             }
         }
+
           Quotation::create([
             'uuid' => $this->generateRandomString(5),
             'vendorName' => $request->name,

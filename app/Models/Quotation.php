@@ -13,6 +13,7 @@ class Quotation extends Model
         'uuid',
         'vendorName',
         'vendorEmail',
+        'itemId',
         'quote'
     ];
 }
