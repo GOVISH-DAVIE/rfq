@@ -12,7 +12,7 @@ class Orders extends Model
         'ordernumber', 
         'amount',
         'quotations_id',
-        'CheckoutRequestID',
+        // 'CheckoutRequestID',
         'completed',
         'PhoneNumber'
     ];

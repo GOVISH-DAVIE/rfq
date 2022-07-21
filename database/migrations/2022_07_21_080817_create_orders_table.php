@@ -18,6 +18,9 @@ class CreateOrdersTable extends Migration
             $table->string('ordernumber');
             $table->string('quotations_id');
             $table->string('amount');
+            $table->string('CheckoutRequestID')->nullable();
+            $table->string('compelte')->default('no');
+            $table->string('PhoneNumber');
             $table->timestamps();
         });
     }
