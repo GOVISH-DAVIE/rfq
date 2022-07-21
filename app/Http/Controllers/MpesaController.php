@@ -57,19 +57,23 @@ class MpesaController extends Controller
             'ordernumber' => $request->item,
             'quotations_id' => $request->item,
             'amount' => $request->total,
+            'PhoneNumber' => $request->number
         ]);
 
 
         $stk = new STK($core);
 
-        $response = $stk->request(10)
-            ->from(254796217595)
-            ->usingReference('Some Reference', 'Test Payment')
+        $response = $stk->request($request->total)
+            ->from($request->number)
+            ->usingReference($request->item, $request->item)
             ->push();
-        Log::info($response);
+        Log::info(json_encode($response));
+
+        $orders->CheckoutRequestID =  $response->CheckoutRequestID;
+        $orders->save();
 
 
-        return $response;
+        return response()->json(array('response' => "success",));
     }
 
     /**
