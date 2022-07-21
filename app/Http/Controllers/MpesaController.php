@@ -2,7 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orders;
 use Illuminate\Http\Request;
+
+
+
+use SmoDav\Mpesa\C2B\STK;
+use SmoDav\Mpesa\Engine\Core;
+use SmoDav\Mpesa\Native\NativeCache;
+use SmoDav\Mpesa\Native\NativeConfig;
+
+use Illuminate\Support\Str;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 
 class MpesaController extends Controller
 {
@@ -35,6 +47,29 @@ class MpesaController extends Controller
     public function store(Request $request)
     {
         //
+
+        $arr = array();
+        $config = new NativeConfig();
+        $cache = new NativeCache(storage_path('framework/cache/data'));
+        $core = new Core(new Client, $config, $cache);
+
+        $orders = Orders::create([
+            'ordernumber' => $request->item,
+            'quotations_id' => $request->item,
+            'amount' => $request->total,
+        ]);
+
+
+        $stk = new STK($core);
+
+        $response = $stk->request(10)
+            ->from(254796217595)
+            ->usingReference('Some Reference', 'Test Payment')
+            ->push();
+        Log::info($response);
+
+
+        return $response;
     }
 
     /**
