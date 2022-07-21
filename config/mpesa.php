@@ -63,7 +63,7 @@ return [
             'id_validation_callback' => 'http://example.com/callback?secret=some_secret_hash_key',
             'lnmo' => [
                 'paybill' => 7436397,
-                'shortcode' => 5436593,
+                'shortcode' => 7436397,
                 'passkey' => '2e3a49c71e022d919da5390dc4435078b481b0118249dd201aee85fd315ae374',
                 'callback' => 'http://example.com/callback?secret=some_secret_hash_key',
             ]

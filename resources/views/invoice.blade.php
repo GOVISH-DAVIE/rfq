@@ -302,7 +302,9 @@
                                                                     {{ $u }}</strong></h5>
 
                                                             <form id="form" name="form">
-                                                                <input type="text" name="number#{{ $u }}"
+                                                                <input type="text" name="item" value="{{$item->uuid}}" hidden id="">
+                                                                <input type="text" name="total" value="{{$u}}" hidden id="">
+                                                                <input type="text" name="number"
                                                                     class="form-control my-1" id=""
                                                                     placeholder="2547000...">
                                                                 <input type="submit" class="btn btn-success"
@@ -342,9 +344,8 @@
     form.addEventListener("submit", (event) => {
         event.preventDefault();
         let fd = new FormData(document.getElementById('form'))
-
-        fd.append('item', document.getElementById('item').value)
-        fetch("/quote", {
+ 
+        fetch("/mpesa", {
                 method: "POST",
                 body: fd
             })
