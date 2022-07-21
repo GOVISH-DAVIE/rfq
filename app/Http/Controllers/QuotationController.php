@@ -55,6 +55,7 @@ class QuotationController extends Controller
                 array_push($arr,  array(
                     'name' => explode("#", $key)[1],
                     'quantity' => explode("#", $key)[2],
+                    'price' =>$value,
                 ));
             }
         }
@@ -78,6 +79,10 @@ class QuotationController extends Controller
     public function show($id)
     {
         //
+    
+        $item = Quotation::where("uuid", $id)->get() ->first();
+        // return $item;
+        return view("invoice")->with('item', $item);
     }
 
     /**

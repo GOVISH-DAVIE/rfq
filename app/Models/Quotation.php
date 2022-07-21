@@ -16,4 +16,9 @@ class Quotation extends Model
         'itemId',
         'quote'
     ];
+
+    public function getitem()
+    {
+        return $this->belongsTo(forms::class, 'itemId', 'id');
+    }
 }
