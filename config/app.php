@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-
+        // mpesa
         SmoDav\Mpesa\Laravel\ServiceProvider::class,
 
     ],

@@ -300,6 +300,14 @@
                                                             </p>
                                                             <h5 class="text-success"><strong>KES
                                                                     {{ $u }}</strong></h5>
+
+                                                            <form id="form" name="form">
+                                                                <input type="text" name="number#{{ $u }}"
+                                                                    class="form-control my-1" id=""
+                                                                    placeholder="2547000...">
+                                                                <input type="submit" class="btn btn-success"
+                                                                    value="LIPA NA M PESA">
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 </tbody>
