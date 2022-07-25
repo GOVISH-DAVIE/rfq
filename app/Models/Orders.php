@@ -16,4 +16,8 @@ class Orders extends Model
         'completed',
         'PhoneNumber'
     ];
+    public function quotation()
+    {
+        return $this->belongsTo(Quotation::class, 'ordernumber', 'uuid');
+    }
 }

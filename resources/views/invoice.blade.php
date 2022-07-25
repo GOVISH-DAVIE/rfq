@@ -360,8 +360,10 @@
             .then(response => {
                 console.log(response);
                 document.getElementById('submit').innerHTML = `<img src="/s.gif" height='60' alt="">`
+             setTimeout(() => {
                 document.getElementById('confirmMpesa').innerHTML = ` <button class="btn btn-success" type='button' onclick="mpesaConfirm('${response.body}')">Confirm MPesa Payment</button>`
 
+             }, 3000);
 
             })
             .catch(err => {
@@ -372,12 +374,22 @@
     })
 
     let mpesaConfirm = (key)=>{
+        // document.getElementById('confirmMpesa').innerHTML = ``
+
+
+        // setTimeout(() => {
+        //     document.getElementById('confirmMpesa').innerHTML = ` <button class="btn btn-outlined-warning" type='button' >Confirming the M-Pesa Payment...</button>`
+
+        // }, 2000);
+        
         fetch(`/mpesa/${key}`, {
                 method: "Get", 
             })
             .then(response => response.text())
             .then(response => {
                 console.log(response);
+                // window.alert(response.ResultDesc)
+                // window.location.replace("/")
                 
             })
             .catch(err => {

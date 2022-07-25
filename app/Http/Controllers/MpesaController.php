@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Orders;
+use App\Models\Quotation;
 use Illuminate\Http\Request;
 
 
@@ -65,7 +66,7 @@ class MpesaController extends Controller
 
         $response = $stk->request($request->total)
             ->from($request->number)
-            ->usingReference($request->item, $request->item) 
+            ->usingReference($request->item, $request->item)
             ->setCommand("CustomerBuyGoodsOnline")
             ->push();
         Log::info(json_encode($response));
@@ -74,7 +75,7 @@ class MpesaController extends Controller
         $orders->save();
 
 
-        return response()->json(array('response' => "success",'body'=>  $response->CheckoutRequestID));
+        return response()->json(array('response' => "success", 'body' =>  $response->CheckoutRequestID));
     }
 
     /**
@@ -92,8 +93,18 @@ class MpesaController extends Controller
         $core = new Core(new Client, $config, $cache);
 
         $stk = new STK($core);
-    
+        $orders = Orders::where('CheckoutRequestID', $id)->get()->load('quotation')->first();
+        // return $orders->ordernumber;
+        $quotationsList = Quotation::where([['itemId', "=", $orders->quotation->itemId], ['uuid', "!=", $orders->ordernumber]])->get();
+     
         $response = $stk->validate($id);
+        if ($response->ResultCode == 0) {
+
+            foreach ($quotationsList as  $value) {
+                $value->delete();
+            }
+        }
+
         return $response;
     }
 
