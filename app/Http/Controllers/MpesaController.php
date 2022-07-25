@@ -94,7 +94,6 @@ class MpesaController extends Controller
 
         $stk = new STK($core);
         $orders = Orders::where('CheckoutRequestID', $id)->get()->load('quotation')->first();
-        // return $orders->ordernumber;
         $quotationsList = Quotation::where([['itemId', "=", $orders->quotation->itemId], ['uuid', "!=", $orders->ordernumber]])->get();
      
         $response = $stk->validate($id);

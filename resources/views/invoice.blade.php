@@ -374,22 +374,21 @@
     })
 
     let mpesaConfirm = (key)=>{
-        // document.getElementById('confirmMpesa').innerHTML = ``
+        document.getElementById('confirmMpesa').innerHTML = ``
 
 
-        // setTimeout(() => {
-        //     document.getElementById('confirmMpesa').innerHTML = ` <button class="btn btn-outlined-warning" type='button' >Confirming the M-Pesa Payment...</button>`
+        setTimeout(() => {
+            document.getElementById('confirmMpesa').innerHTML = ` <button class="btn btn-outlined-warning" type='button' >Confirming the M-Pesa Payment...</button>`
 
-        // }, 2000);
+        }, 2000);
         
         fetch(`/mpesa/${key}`, {
                 method: "Get", 
             })
-            .then(response => response.text())
-            .then(response => {
-                console.log(response);
-                // window.alert(response.ResultDesc)
-                // window.location.replace("/")
+            .then(response => response.json())
+            .then(response => { 
+                window.alert(response.ResultDesc)
+                window.location.replace("/")
                 
             })
             .catch(err => {
