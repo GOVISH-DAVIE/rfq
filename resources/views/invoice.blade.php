@@ -302,14 +302,21 @@
                                                                     {{ $u }}</strong></h5>
 
                                                             <form id="form" name="form">
-                                                                <input type="text" name="item" value="{{$item->uuid}}" hidden id="">
-                                                                <input type="text" name="total" value="{{$u}}" hidden id="">
-                                                                <input type="text" name="number"
+                                                                <input type="text" name="item"
+                                                                    value="{{ $item->uuid }}" hidden id="">
+                                                                <input type="text" name="total"
+                                                                    value="{{ $u }}" hidden id="">
+                                                                <input required type="text" name="number"
                                                                     class="form-control my-1" id=""
                                                                     placeholder="2547000...">
-                                                                <input type="submit" class="btn btn-success"
-                                                                    value="LIPA NA M PESA">
+                                                                <div id="submit">
+                                                                    <input type="submit" class="btn btn-success"
+                                                                        value="LIPA NA M PESA">
+                                                                        
+                                                                </div>
+
                                                             </form>
+                                                            <div id="confirmMpesa"></div>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -344,14 +351,16 @@
     form.addEventListener("submit", (event) => {
         event.preventDefault();
         let fd = new FormData(document.getElementById('form'))
- 
+
         fetch("/mpesa", {
                 method: "POST",
                 body: fd
             })
-            .then(response => response.text())
+            .then(response => response.json())
             .then(response => {
                 console.log(response);
+                document.getElementById('submit').innerHTML = `<img src="/s.gif" height='60' alt="">`
+                document.getElementById('confirmMpesa').innerHTML = ` <button class="btn btn-success" type='button' onclick="mpesaConfirm('${response.body}')">Confirm MPesa Payment</button>`
 
 
             })
@@ -361,6 +370,20 @@
 
 
     })
+
+    let mpesaConfirm = (key)=>{
+        fetch(`/mpesa/${key}`, {
+                method: "Get", 
+            })
+            .then(response => response.text())
+            .then(response => {
+                console.log(response);
+                
+            })
+            .catch(err => {
+                console.log("Error:", err.message);
+            })
+    }
 </script>
 
 </html>

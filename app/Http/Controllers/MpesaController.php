@@ -65,7 +65,8 @@ class MpesaController extends Controller
 
         $response = $stk->request($request->total)
             ->from($request->number)
-            ->usingReference($request->item, $request->item)
+            ->usingReference($request->item, $request->item) 
+            ->setCommand("CustomerBuyGoodsOnline")
             ->push();
         Log::info(json_encode($response));
 
@@ -73,7 +74,7 @@ class MpesaController extends Controller
         $orders->save();
 
 
-        return response()->json(array('response' => "success",));
+        return response()->json(array('response' => "success",'body'=>  $response->CheckoutRequestID));
     }
 
     /**
@@ -84,7 +85,16 @@ class MpesaController extends Controller
      */
     public function show($id)
     {
-        //
+        // 
+        $arr = array();
+        $config = new NativeConfig();
+        $cache = new NativeCache(storage_path('framework/cache/data'));
+        $core = new Core(new Client, $config, $cache);
+
+        $stk = new STK($core);
+    
+        $response = $stk->validate($id);
+        return $response;
     }
 
     /**

@@ -60,12 +60,12 @@ return [
             'key' => 'J15gGoXYeHpOAffzE01BJ3SdIk7Mh5qM',
             'secret' => 'YtBlKwSjoRhhwGZV',
             'initiator' => 'M-Jenzi',
-            'id_validation_callback' => 'http://example.com/callback?secret=some_secret_hash_key',
+            'id_validation_callback' => 'https://m-jenzi.com/rfq/stkpush',
             'lnmo' => [
-                'paybill' => 7436397,
+                'paybill' => 5436593,
                 'shortcode' => 7436397,
                 'passkey' => '2e3a49c71e022d919da5390dc4435078b481b0118249dd201aee85fd315ae374',
-                'callback' => 'http://example.com/callback?secret=some_secret_hash_key',
+                'callback' => 'https://m-jenzi.com/rfq/stkpush',
             ]
         ],
     ],
