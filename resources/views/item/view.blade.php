@@ -32,7 +32,8 @@
         </nav>
 
     </div>
-    <form action="/quote" id="form" name="form" class="my-2" method="post">
+    <form action="/item/{{ $item->id }}" class="my-2" method="POST">
+        <input type="text" name="_method" value="PUT"  hidden >
         <div class="container">
             <div class="row">
 
@@ -40,7 +41,7 @@
 
                     <div class="card my-1">
 
-                        <img class="card-img-top" src="/storage/image/{{ $item->img }}" alt="Card image cap">
+                        <img class="card-img-top" src="/storage/image/{{ $item->img }}" alt="{{ $item->img }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->name }}</h5>
                             <h5 class="card-title">{{ $item->quantity }}</h5>
@@ -51,12 +52,17 @@
                             </i>
 
                             {{-- {!! Form::submit($text, [$options]) !!} --}}
-                            <form action="/items/{{ $item->id }}" method="POST">
+                            
+                                <input required name="name" type="text" class="form-control my-1"
+                                    placeholder="Vendor Name" aria-label="Vendor Name" aria-describedby="basic-addon2">
+                                <input required name="email" type="email" class="form-control my-2"
+                                    placeholder="Vendor Email" aria-label="Vendor Name" aria-describedby="basic-addon2">
+
                                 <input required type="number" class="form-control" placeholder="Add Own Quote"
-                                    aria-label="Recipient's username" name="{{ $item->id }}"
+                                    aria-label="Recipient's username" name="quote"
                                     aria-describedby="basic-addon2">
-                                <button class="btn btn-outline-secondary" type="submit">Button</button>
-                            </form>
+                                <button class="btn btn-outline-secondary my-2" type="submit">Submit Quote</button>
+                     
 
                         </div>
                     </div>
@@ -76,27 +82,27 @@
 <script>
     var form = document.getElementById('form');
 
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        let fd = new FormData(document.getElementById('form'))
+    // form.addEventListener("submit", (event) => {
+    //     event.preventDefault();
+    //     let fd = new FormData(document.getElementById('form'))
 
-        fd.append('item', document.getElementById('item').value)
-        fetch("/quote", {
-                method: "POST",
-                body: fd
-            })
-            .then(response => response.text())
-            .then(response => {
-                console.log(response);
-
-
-            })
-            .catch(err => {
-                console.log("Error:", err.message);
-            })
+    //     fd.append('item', document.getElementById('item').value)
+    //     fetch("/quote", {
+    //             method: "POST",
+    //             body: fd
+    //         })
+    //         .then(response => response.text())
+    //         .then(response => {
+    //             console.log(response);
 
 
-    })
+    //         })
+    //         .catch(err => {
+    //             console.log("Error:", err.message);
+    //         })
+
+
+    // })
 </script>
 
 </html>

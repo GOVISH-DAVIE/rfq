@@ -215,7 +215,7 @@
                                         <a href="index.html" class="invoice-logo">
                                             {{-- {{$item->get_item->item}} --}}
 
-                                            INVOICE(NOT PAID)
+                                            Quotation
                                         </a>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
@@ -305,7 +305,7 @@
                                                             <h5 class="text-success"><strong>KES
                                                                     {{ $u }}</strong></h5>
 
-                                                            <form id="form" name="form">
+                                                            {{-- <form id="form" name="form">
                                                                 <input type="text" name="item"  hidden id="">
                                                                 <input type="text" name="total"  hidden id="">
                                                                 <input required type="text" name="number"
@@ -317,7 +317,7 @@
                                                                         
                                                                 </div>
 
-                                                            </form>
+                                                            </form> --}}
                                                             <div id="confirmMpesa"></div>
                                                         </td>
                                                     </tr>

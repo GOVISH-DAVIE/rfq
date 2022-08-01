@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use App\Models\Quotation;
 use Illuminate\Http\Request;
 
@@ -80,9 +81,9 @@ class QuotationController extends Controller
     {
         //
     
-        $item = Quotation::where("uuid", $id)->get() ->first();
-        // return $item;
-        return view("invoice")->with('item', $item);
+        $item =Invoice::where("uuid", $id)->get() ->first();
+        $invoice = $item->load('item.getrequestuser');
+        return view("invoice")->with('invoice', $invoice);
     }
 
     /**

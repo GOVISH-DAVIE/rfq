@@ -21,6 +21,6 @@ class Items extends Model
 
     public function getrequestuser()
     {
-        return $this->belongsTo(forms::class);
+        return $this->belongsTo(forms::class,'form_id', 'id');
     }
 }
