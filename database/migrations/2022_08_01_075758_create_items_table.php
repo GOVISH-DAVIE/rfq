@@ -19,7 +19,7 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('quantity');
-            $table->string('img');
+            $table->string('img')->nullable();
             $table->string('minbudget')->nullable();
             $table->string('maxbudget')->nullable();
             $table->string('fullfilled')->nullable();

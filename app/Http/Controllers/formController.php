@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\forms;
+use App\Models\Items;
 use Illuminate\Http\Request;
 
 class formController extends Controller
@@ -15,7 +16,7 @@ class formController extends Controller
     public function index()
     {
         //
-        $rfqs = forms::all();
+        $rfqs = Items::all();
         return view('rfq')->with('rfqs', $rfqs);
     }
 
@@ -55,29 +56,40 @@ class formController extends Controller
         }
 
         $newArr = array_unique($arr);
-        foreach ($newArr as $key => $value) {
-            # code...
-            array_push($arrItem, $this->funArry($value, $request));
-        }
-
-        array_push($arrItem, array(
-            "item" => $_POST["itemName"],
-            'des' => $_POST["description"],
-            'img' => $this->upload($request, "img"),
-            'quantity' => $_POST["quantity"],
-            'mb' => $_POST["mb"],
-            'mxb' => $_POST["mxb"],
-        ));
-
-        // return $arrItem;
-        forms::create([
+        $forms =   forms::create([
             'fullName' =>  $request->name,
             'email' => $request->email,
             'location' => $request->location,
-            'items' => json_encode($arrItem)
+            'items' => ""
 
         ]);
-        return $arrItem;
+        foreach ($newArr as $key => $value) {
+            # code...
+            array_push($arrItem, $this->funArry($value, $request, $forms->id));
+        }
+
+        // array_push($arrItem, array(
+        //     "name" => $_POST["itemName"],
+        //     'description' => $_POST["description"],
+        //     'img' => $this->upload($request, "img"),
+        //     'quantity' => $_POST["quantity"],
+        //     'minbudget' => $_POST["mb"],
+        //     'maxbudget' => $_POST["mxb"],
+        // ));
+
+        // return $arrItem;
+
+        $item =  Items::create([
+            'form_id' => $forms->id,
+            "name" => $_POST["itemName"],
+            'description' => $_POST["description"],
+            'img' => $this->upload($request, "img"),
+            'quantity' => $_POST["quantity"],
+            'minbudget' => $_POST["mb"],
+            'maxbudget' => $_POST["mxb"],
+        ]);
+
+        return $item;
     }
 
 
@@ -101,17 +113,17 @@ class formController extends Controller
         return $fileNameToStore;
     }
 
-    public function funArry($key, $request)
+    public function funArry($key, $request, $id)
     {
-
-        return  array(
-            "item" => $_POST["item_$key"],
-            'des' => $_POST["des_$key"],
+        return Items::create([
+            'form_id' => $id,
+            "name" => $_POST["item_$key"],
+            'description' => $_POST["des_$key"],
             'img' => $this->upload($request, "img_$key"),
             'quantity' =>  $_POST["quantity_$key"],
-            'mb' => $_POST["mb_$key"],
-            'mxb' => $_POST["mxb_$key"],
-        );
+            'minbudget' => $_POST["mb_$key"],
+            'maxbudget' => $_POST["mxb_$key"],
+        ]);
     }
 
     /**

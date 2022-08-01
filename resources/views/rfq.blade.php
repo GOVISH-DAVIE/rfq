@@ -33,28 +33,37 @@
 
     </div>
     <br>
-  <div class="container">
-    <div class="row">
-        @foreach ($rfqs as $item)
-        
-                <div class="col-sm-12 col-md-4 my-1">
-                    <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title"> CLient Name: {{ $item->fullName }}</h5>
-                          <i>Client Email: {{ $item->email }}</i>
-                          <p class="card-text">{{ $item->location }}</p>
-                          <p class="card-text"><small class="text-muted">
-                            No. Items: <?php print_r(count(json_decode($item->items))); ?></small></p>
+    <div class="container">
+        <div class="row">
+            @foreach ($rfqs as $it)
+                <div class="card m-1">
 
-                            <a class="btn btn-outline-dark" href="/rfq/{{$item->id}}">view </a>
+                    <img class="card-img-top" src="/storage/image/{{ $it->img }}" alt="{{ $it->img }}">
+                    <div class="card-body">
+                        <i>
+                            <h5 class="card-title">Item Name{{ $it->name }}</h5>
+                        </i>
+                        <i>
+                            <h5 class="card-title">Quantity {{ $it->quantity }}</h5>
+                        </i>
+                        {{-- <p class="card-text">{{ $item->des }}</p> --}}
+                        <i>
+                            Min Budget: {{ $it->mb }}
+                            |
+                            Max Budget: {{ $it->mxb }}
+                        </i>
+
+
+                        <div class="input-group mb-3">
+                             <div class="input-group-append">
+                                <a href="/item/{{$it->id}}" class="btn btn-outline-secondary">View</a>
+                            </div>
                         </div>
-                      </div>
-              
+                    </div>
                 </div>
-            
-        @endforeach
+            @endforeach
+        </div>
     </div>
-  </div>
 
 </body>
 

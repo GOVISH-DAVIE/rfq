@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\formController;
+use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\QuotationController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,4 +28,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/rfq', formController::class);
 Route::resource('/quote', QuotationController::class);
 Route::resource('/mpesa', MpesaController::class);
+Route::resource('/item', ItemsController::class);
 

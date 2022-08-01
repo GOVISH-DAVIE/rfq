@@ -187,7 +187,7 @@
             })
             .then(response => response.text())
             .then(result => {
-                // console.log('Success:', result);
+                console.log('Success:', result);
                 window.alert("Uploaded successfully")
             })
             .catch(error => {
