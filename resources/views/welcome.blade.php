@@ -82,19 +82,19 @@
                 <div class="col-lg-4 col-sm-4">
                     <div class="form-group">
                         <label for="exampleInputPassword1">Quantity</label>
-                        <input required type="number" name="quantity" class="form-control" placeholder=" ">
+                        <input  type="number" name="quantity" class="form-control" placeholder=" ">
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-4">
                     <div class="form-group">
                         <label for="exampleInputPassword1">Min budget</label>
-                        <input required type="text" name="mb" class="form-control" placeholder=" ">
+                        <input  type="text" name="mb" class="form-control" placeholder=" ">
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-4">
                     <div class="form-group">
                         <label for="exampleInputPassword1">Max budget</label>
-                        <input required type="text" name="mxb" class="form-control" placeholder="">
+                        <input  type="text" name="mxb" class="form-control" placeholder="">
                     </div>
                 </div>
                 <hr style="width:100%;text-align:left;margin-left:0">
@@ -160,13 +160,13 @@
                 <div class="col-lg-4 col-sm-4">
                     <div class="form-group">
                         <label for="exampleInputPassword1">Min budget</label>
-                        <input required type="text" name="mb_${key}" class="form-control" id="exampleInputPassword1" placeholder=" ">
+                        <input  type="text" name="mb_${key}" class="form-control" id="exampleInputPassword1" placeholder=" ">
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-4">
                     <div class="form-group">
                         <label for="exampleInputPassword1">Max budget</label>
-                        <input required type="text" name="mxb_${key}" class="form-control" id="exampleInputPassword1" placeholder=" ">
+                        <input  type="text" name="mxb_${key}" class="form-control" id="exampleInputPassword1" placeholder=" ">
                     </div>
                 </div>
                 <hr style="width:100%;text-align:left;margin-left:0">
